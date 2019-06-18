@@ -1,5 +1,4 @@
 
-
 from django.http import JsonResponse
 
 from django.views.decorators.csrf import csrf_exempt
@@ -21,8 +20,11 @@ def analyze_code(request,lang):
         body = json.loads(request.body)
 
         analyzer = AnalyzeCodeAPI(lang=lang,data = body.get('data'))        
+        
+        resp = analyzer() if isinstance(analyzer,AnalyzeCodeAPI) \
+                else analyzer 
 
-        return JsonResponse(analyzer.analyze_file(),status = 200)
+        return JsonResponse(resp,status = resp['status'])
 
     if request.method == 'OPTIONS':
         return JsonResponse({},status = 200)

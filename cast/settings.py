@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['localhost']
 
 ALLOWED_ORIGIN = 'http://localhost:8001'
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,6 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+DATABASE_NAME = 'codeanalyzer'
+COLLECTIONS = {
+    'snippet_col' : 'snippet'
 }
 
 # Password validation
